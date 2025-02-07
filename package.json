@@ -3,31 +3,14 @@
   "version": "1.0.0",
   "description": "A template for creating Model Context Protocol (MCP) servers",
   "type": "module",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "bin": {
-    "mcp-server": "build/index.js"
-  },
   "scripts": {
-    "build": "tsc --project tsconfig.build.json && chmod +x build/index.js",
     "dev": "tsx src/index.ts",
-    "start": "node build/index.js",
     "lint": "eslint . --ext .ts",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "npm run build"
+    "test": "vitest"
   },
-  "files": [
-    "build",
-    "README.md",
-    "LICENSE"
-  ],
   "keywords": [
     "mcp",
-    "model-context-protocol",
-    "server",
-    "template",
-    "typescript"
+    "model-context-protocol"
   ],
   "author": "",
   "license": "MIT",
@@ -46,8 +29,5 @@
     "typescript": "^5.0.0",
     "vite": "^5.0.0",
     "vitest": "^1.0.0"
-  },
-  "engines": {
-    "node": ">=18"
   }
 }
