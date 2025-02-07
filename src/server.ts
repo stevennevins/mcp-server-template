@@ -1,10 +1,12 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { Example } from './tools/example';
-import { Container } from './container';
-import { DataProcessor } from './interfaces/tool';
-import { version } from '../package.json';
+import { Example } from './tools/example.js';
+import { Container } from './container.js';
+import { DataProcessor } from './interfaces/tool.js';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { version } = require('../package.json');
 
 const container = new Container();
 container.register(new Example());

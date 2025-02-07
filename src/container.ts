@@ -1,4 +1,4 @@
-import { Tool } from './interfaces/tool';
+import { Tool } from './interfaces/tool.js';
 
 export class Container {
     private tools: Map<string, Tool>;

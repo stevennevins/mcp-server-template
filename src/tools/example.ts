@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DataProcessor, ToolMetadata } from '../interfaces/tool';
+import { DataProcessor, ToolMetadata } from '../interfaces/tool.js';
 
 const schema = z.object({
   input: z.string().min(1, "Input must not be empty"),
