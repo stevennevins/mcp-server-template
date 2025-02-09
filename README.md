@@ -1,4 +1,5 @@
 # MCP Server Template
+[![smithery badge](https://smithery.ai/badge/@stevennevins/mcp-server-template)](https://smithery.ai/server/@stevennevins/mcp-server-template)
 
 A template for creating Model Context Protocol (MCP) servers in TypeScript. This template provides a solid foundation for building MCP-compatible servers with proper tooling, type safety, and best practices.
 
@@ -13,6 +14,14 @@ A template for creating Model Context Protocol (MCP) servers in TypeScript. This
 - 🔌 MCP SDK integration
 
 ## Getting Started
+
+### Installing via Smithery
+
+To install MCP Server Template for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@stevennevins/mcp-server-template):
+
+```bash
+npx -y @smithery/cli install @stevennevins/mcp-server-template --client claude
+```
 
 ### Development
 
