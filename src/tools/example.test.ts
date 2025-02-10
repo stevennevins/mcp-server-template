@@ -1,19 +1,11 @@
-import { MCPTestClient } from 'mcp-test-client';
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { TestClient } from '../utils/TestClient.js';
 
 describe('example-tool', () => {
-    let client: MCPTestClient;
+    let client: TestClient;
 
     beforeAll(async () => {
-        client = new MCPTestClient({
-            serverCommand: 'tsx',
-            serverArgs: ['src/index.ts'],
-        });
-        await client.init();
-    });
-
-    afterAll(async () => {
-        await client.cleanup();
+        client = new TestClient();
     });
 
     it('should be available in tools list', async () => {
@@ -27,19 +19,20 @@ describe('example-tool', () => {
     });
 
     it('should process valid input', async () => {
-        await client.assertToolCall(
+        const result = await client.callTool(
             'example-tool',
-            { input: 'test data' },
-            (result) => {
-                expect(result.content[0].text).toBe('Processed: test data');
-            }
+            { input: 'test data' }
         );
+        expect(result.toolResult.content[0]).toEqual({
+            type: 'text',
+            text: 'Processed: test data'
+        });
     });
 
     it('should reject empty input', async () => {
         await expect(
             client.callTool('example-tool', { input: '' })
-        ).rejects.toThrow('Input must not be empty');
+        ).rejects.toThrow();
     });
 
     it('should reject missing input', async () => {

@@ -1,5 +1,4 @@
 # MCP Server Template
-[![smithery badge](https://smithery.ai/badge/@stevennevins/mcp-server-template)](https://smithery.ai/server/@stevennevins/mcp-server-template)
 
 A template for creating Model Context Protocol (MCP) servers in TypeScript. This template provides a solid foundation for building MCP-compatible servers with proper tooling, type safety, and best practices.
 
@@ -14,14 +13,6 @@ A template for creating Model Context Protocol (MCP) servers in TypeScript. This
 - 🔌 MCP SDK integration
 
 ## Getting Started
-
-### Installing via Smithery
-
-To install MCP Server Template for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@stevennevins/mcp-server-template):
-
-```bash
-npx -y @smithery/cli install @stevennevins/mcp-server-template --client claude
-```
 
 ### Development
 
@@ -108,26 +99,45 @@ The server will automatically:
 
 ## Testing
 
-The template includes Vitest for testing. Check `example.test.ts` for a sample test implementation:
+The template includes a built-in TestClient for local testing and the MCP Inspector for visual debugging.
+
+### Using TestClient
+
+The TestClient provides a simple way to test your tools:
 
 ```typescript
-import { describe, it, expect } from "vitest";
-import { YourTool } from "./tools/your-tool";
+import { TestClient } from "./utils/TestClient";
 
 describe("YourTool", () => {
+  const client = new TestClient();
+
   it("should process data correctly", async () => {
-    const tool = new YourTool();
-    const result = await tool.processData({ input: "test" });
-    expect(result).toBeDefined();
+    await client.assertToolCall(
+      "your-tool-name",
+      { input: "test" },
+      (result) => {
+        expect(result.toolResult.content).toBeDefined();
+      }
+    );
   });
 });
 ```
 
-## Container Pattern
+### Using MCP Inspector
 
-The template uses a simple dependency injection container that:
+The template includes the MCP Inspector for visual debugging of your tools:
 
-- Manages tool instances
-- Provides easy registration of new tools
-- Handles tool retrieval by name
-- Ensures single instance per tool
+1. Start the inspector:
+
+   ```bash
+   npx @modelcontextprotocol/inspector node dist/index.js
+   ```
+
+2. Open the inspector UI at http://localhost:5173
+
+The inspector provides:
+
+- Visual interface for testing tools
+- Real-time request/response monitoring
+- Tool metadata inspection
+- Interactive testing environment
