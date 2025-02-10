@@ -13,6 +13,8 @@ A template for creating Model Context Protocol (MCP) servers in TypeScript. This
 - 📝 Type definitions
 - 🔌 MCP SDK integration
 
+<a href="https://glama.ai/mcp/servers/vo6c2ak3zs"><img width="380" height="200" src="https://glama.ai/mcp/servers/vo6c2ak3zs/badge" alt="Server Template MCP server" /></a>
+
 ## Getting Started
 
 ### Installing via Smithery
