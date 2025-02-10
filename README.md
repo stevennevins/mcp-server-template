@@ -51,8 +51,6 @@ A template for creating Model Context Protocol (MCP) servers in TypeScript. This
 ```
 src/
 ├── index.ts          # Entry point
-├── server.ts         # MCP server configuration
-├── container.ts      # Dependency injection container
 ├── interfaces/       # Interface definitions
 │   └── tool.ts      # DataProcessor interface
 └── tools/           # Tool implementations
@@ -61,33 +59,41 @@ src/
 
 ## Creating Tools
 
-1. Implement the DataProcessor interface:
+1. Export your tool and handlers following the example in `src/tools/example.ts`:
 
    ```typescript
-   import { DataProcessor } from "../interfaces/tool";
+   // In your-tool.ts
+   export const YOUR_TOOLS = [
+     {
+       name: "your-tool-name",
+       description: "Your tool description",
+       parameters: {
+         // Your tool parameters schema
+       },
+     },
+   ];
 
-   export class MyTool implements DataProcessor {
-     getMetadata() {
+   export const YOUR_HANDLERS = {
+     "your-tool-name": async (request) => {
+       // Your tool handler implementation
        return {
-         name: "my-tool",
-         description: "Description of my tool",
+         toolResult: {
+           content: [{ type: "text", text: "Result" }],
+         },
        };
-     }
-
-     async processInput(args: any): Promise<string> {
-       // Implement your tool logic here
-       return "Result";
-     }
-   }
+     },
+   };
    ```
 
-2. Register your tool in the container:
+2. Register your tool in the `ALL_TOOLS` and `ALL_HANDLERS` constants in `src/index.ts`:
 
    ```typescript
-   // In server.ts
-   import { MyTool } from "./tools/my-tool";
+   // In src/index.ts
+   import { YOUR_TOOLS, YOUR_HANDLERS } from "./tools/your-tool.js";
 
-   container.register(new MyTool());
+   // Combine all tools
+   const ALL_TOOLS = [...EXAMPLE_TOOLS, ...YOUR_TOOLS];
+   const ALL_HANDLERS = { ...EXAMPLE_HANDLERS, ...YOUR_HANDLERS };
    ```
 
 The server will automatically:
