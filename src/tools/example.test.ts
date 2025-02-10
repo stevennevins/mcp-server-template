@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { TestClient } from '../utils/TestClient.js';
 
 describe('example-tool', () => {

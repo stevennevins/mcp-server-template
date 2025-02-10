@@ -141,3 +141,48 @@ The inspector provides:
 - Real-time request/response monitoring
 - Tool metadata inspection
 - Interactive testing environment
+
+### Local Testing with Cursor
+
+To test your MCP server locally with Cursor:
+
+1. Build and link the package:
+
+   ```bash
+   npm run build
+   npm run link
+   ```
+
+2. Verify the binary works:
+
+   ```bash
+   npx example-mcp-tool
+   ```
+
+3. Add the server to Cursor:
+
+   - Open Cursor settings
+   - Navigate to the Features tab
+   - Scroll down to MCP Servers section
+   - Click "Add Server"
+   - Select "Command" type
+   - Give it a name (e.g., "Local Example Tool")
+   - Enter the command: `npx example-mcp-tool`
+   - Click Confirm
+
+4. Verify the server starts correctly in Cursor by checking the MCP Servers section shows your server as running.
+
+Note: If you make changes to your code, remember to rebuild and relink:
+
+```bash
+npm run build
+npm run link
+```
+
+When you're done testing, you can unlink the package:
+
+```bash
+npm run unlink
+```
+
+This will remove the global symlink created during development.
