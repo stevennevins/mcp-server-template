@@ -32,7 +32,7 @@ describe('example-tool', () => {
     it('should reject empty input', async () => {
         await expect(
             client.callTool('example-tool', { input: '' })
-        ).rejects.toThrow();
+        ).rejects.toThrow('Input must not be empty');
     });
 
     it('should reject missing input', async () => {
